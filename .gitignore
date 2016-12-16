@@ -1,0 +1,7 @@
+.project
+.classpath
+target/*
+output.xml
+log.html
+report.html
+
