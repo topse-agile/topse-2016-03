@@ -9,25 +9,8 @@
 </head>
 <body>
 
-        <form action="./" method="POST">
-            <input type="text" name="arg1" value="<%= request.getAttribute("arg1") %>" />
-            <span>+</span>
-            <input type="text" name="arg2" value="<%= request.getAttribute("arg2") %>" />
-            <input type="submit" value="="/>
-            <input type="text" name="result" value="<%= request.getAttribute("result") %>" />
-        </form>
+<a href="confirm.jsp">確認</a>
 
-        <ul>
-<%
-List<String> history = (List<String>)request.getAttribute("history");
-if (history != null) {
-for (String item : history) {
-%>
-        <li><%= item %></li>
-<%
-}
-}
- %>
-        </ul>
+
 </body>
 </html>
