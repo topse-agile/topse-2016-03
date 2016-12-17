@@ -4,20 +4,33 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+
+import static org.mockito.Mockito.*;
 
 import jp.topse.agile2016.MainServlet;
 
 public class MainServletTest {
 
-    private MainServlet servlet = new MainServlet();
+    private MainServlet servlet = null;
     private MockHttpServletRequest request = new MockHttpServletRequest();
     private MockHttpServletResponse response = new MockHttpServletResponse();
 
+    @Before
+    public void setup() {
+    		servlet = spy(new MainServlet());
+   		ServletContext context = mock(ServletContext.class);
+   		String dir = System.getProperty("user.dir") + "/src/main/webapp/WEB-INF/logs.db";
+		when(context.getRealPath("/WEB-INF/logs.db")).thenReturn(dir);
+   		doReturn(context).when(servlet).getServletContext();
+    }
+    
     @Test
     public void test_doGetShouldReturnsNoArgsAndResult() throws IOException, ServletException {
         this.servlet.doGet(this.request, this.response);
